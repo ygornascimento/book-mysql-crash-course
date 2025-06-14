@@ -74,10 +74,73 @@ shift			varchar(50) default '9-5',
 primary key (job_id)
 );
 
+show indexes from job;
+show tables;
+
+create database solar_system;
+use solar_system;
+create table planet(
+planet_id		int,
+planet_name		varchar(50)
+);
+
+create table ring(
+planet_id		int,
+ring_tot		int
+);
+
+insert into planet (planet_id, planet_name)
+values
+(1, 'Mercury'),
+(2, 'Venus'),
+(3, 'Earth'),
+(4, 'Mars'),
+(5, 'Jupiter'),
+(6, 'Saturn'),
+(7, 'Uranus'),
+(8, 'Neptune');
+
+insert into ring (planet_id, ring_tot)
+values
+(5, 3),
+(6, 7),
+(7, 13),
+(8, 6);
+
+select * from planet;
+select * from ring;
 
 
+select 	p.planet_id,
+		r.planet_id
+from 	planet as p, ring as r
+where	p.planet_id = r.planet_id;
 
+select 	p.planet_id,
+		r.planet_id
+from	planet as p
+inner join ring as r
+on 		p.planet_id = r.planet_id;
 
+-- Exercise 5-1: Inner Join
+select  p.planet_name,
+        r.ring_tot
+from    planet p
+inner join ring r
+on      p.planet_id = r.planet_id;
+
+select  p.planet_name,
+        r.ring_tot
+from planet p 
+left outer join ring r
+on p.planet_id = r.planet_id;
+
+select		p.planet_name,
+			r.ring_tot
+from ring r
+right outer join planet p
+on p.planet_id = r.planet_id;
+		
 
 
 
